@@ -1,5 +1,6 @@
 package co.edu.udea.logica.model;
 
+import java.awt.Color;
 import java.util.Random;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -60,16 +61,40 @@ public class Matriz extends JTable{
     }
     public int sumarDatos(){
         int suma=0;
+        JTextField txt;
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                suma+=(int)matriz.getValueAt(i, j);
+                txt=(JTextField)matriz.getValueAt(i, j);
+                suma+=Integer.parseInt(txt.getText());
             }
         }
         return suma;
     }
     
     public void pintarMayor(){
-        JTextField txt= new JTextField();
-        matriz.setValueAt(txt, 0, 0);
+        JTextField txt;
+        int mayor=0;
+        int datoTxt;
+        for(int i=0;i<n; i++){
+            for(int j=0; j<n; j++){
+                txt=(JTextField)matriz.getValueAt(i, j);
+                datoTxt=Integer.parseInt(txt.getText());
+                if(datoTxt>mayor){
+                    mayor=datoTxt;
+                }
+            }
+        }
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                txt=(JTextField)matriz.getValueAt(i, j);
+                datoTxt=Integer.parseInt(txt.getText());
+                if(datoTxt==mayor){
+                    txt.setBackground(Color.red);
+                    matriz.setValueAt(txt, i, j);
+                }
+            }
+        }
+        
     }
 }

@@ -115,6 +115,7 @@ public class frmMatriz extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNActionPerformed
     
     Matriz matriz;
+    Matriz matrizAux;
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         int n;
@@ -134,6 +135,7 @@ public class frmMatriz extends javax.swing.JFrame {
         matriz.Llenar();
         
         tblMatriz=matriz.getMatriz();
+        matrizAux=matriz;
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnListaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaOperacionesActionPerformed
@@ -141,7 +143,7 @@ public class frmMatriz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
         }*/
-        
+        tblMatriz=matriz.getMatriz();
         if(matriz==null){
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
@@ -173,22 +175,18 @@ public class frmMatriz extends javax.swing.JFrame {
                 tblMatriz=matriz.getMatriz();
                 break;
             case "2":
-                JOptionPane.showMessageDialog(null, matriz.sumarDatos());
-                //todo: test this method 
+                JOptionPane.showMessageDialog(null, "La suma es: "+matriz.sumarDatos());
+                break;
+            
+            case "3":
+                matrizAux.pintarMayor();
+                tblMatriz=matrizAux.getMatriz();
                 break;
             default:
+                JOptionPane.showMessageDialog(null, "Option invalida");
         }
         
-        /*JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
-                + "\n1. LLenar Matriz"
-                + "\n2. Sumar Matriz"
-                + "\n3. Pintar Mayor"
-                + "\n4. Pintar Menor"
-                + "\n5. Pintar Menor Fila" 
-                + "\n6. Pintar Menor Columna"
-                + "\n7. Pintar Dato Con Mayor Suma De Digitos Por Columna "
-                + "\n8. Pintar Datos Con Suma De Digitos 5 o 13"
-                + "\n9. Ordenar cada columna ascendentemente");*/
+        tblMatriz=matriz.getMatriz();
         
     }//GEN-LAST:event_btnListaOperacionesActionPerformed
 
