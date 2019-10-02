@@ -27,7 +27,7 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnListaOperaciones" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="587" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="591" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel1" pref="86" max="32767" attributes="0"/>
@@ -52,10 +52,10 @@
                   <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="382" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnListaOperaciones" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnListaOperaciones">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista De Operaciones"/>
+        <Property name="text" type="java.lang.String" value="Lista de operaciones"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaOperacionesActionPerformed"/>

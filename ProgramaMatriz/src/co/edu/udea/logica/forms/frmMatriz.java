@@ -8,6 +8,7 @@ package co.edu.udea.logica.forms;
 import co.edu.udea.logica.model.Matriz;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -66,7 +67,7 @@ public class frmMatriz extends javax.swing.JFrame {
 
         jLabel1.setText("Tamaño Matriz");
 
-        btnListaOperaciones.setText("Lista De Operaciones");
+        btnListaOperaciones.setText("Lista de operaciones");
         btnListaOperaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaOperacionesActionPerformed(evt);
@@ -81,7 +82,7 @@ public class frmMatriz extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnListaOperaciones)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
@@ -100,10 +101,10 @@ public class frmMatriz extends javax.swing.JFrame {
                     .addComponent(txtN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnListaOperaciones)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -112,7 +113,8 @@ public class frmMatriz extends javax.swing.JFrame {
     private void txtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNActionPerformed
-
+    
+    Matriz matriz;
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         int n;
@@ -128,13 +130,23 @@ public class frmMatriz extends javax.swing.JFrame {
             txtN.setText("");
             return;
         }
-        Matriz matriz= new Matriz(n, tblMatriz);
+        matriz= new Matriz(n, tblMatriz);
         matriz.Llenar();
+        
         tblMatriz=matriz.getMatriz();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnListaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaOperacionesActionPerformed
-        JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
+        /*if("".equals(txtN.getText())){
+            JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
+            return;
+        }*/
+        
+        if(matriz==null){
+            JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
+            return;
+        }
+        String opcion=JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
                 + "\n1. Llenar matriz"
                 + "\n2. Sumar matriz"
                 + "\n3. Pintar mayor"
@@ -155,6 +167,17 @@ public class frmMatriz extends javax.swing.JFrame {
                 + "\n18. Ordenar digitos de cada dato ascendentemente"
                 + "\n19. Sumar datos de casillas negras");
         
+        switch(opcion){
+            case "1":
+                matriz.Llenar();
+                tblMatriz=matriz.getMatriz();
+                break;
+            case "2":
+                JOptionPane.showMessageDialog(null, matriz.sumarDatos());
+                //todo: test this method 
+                break;
+            default:
+        }
         
         /*JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
                 + "\n1. LLenar Matriz"
