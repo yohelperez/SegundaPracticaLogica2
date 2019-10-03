@@ -133,9 +133,8 @@ public class frmMatriz extends javax.swing.JFrame {
         }
         matriz= new Matriz(n, tblMatriz);
         matriz.Llenar();
-        
+        //matriz.limpiar();
         tblMatriz=matriz.getMatriz();
-        matrizAux=matriz;
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnListaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaOperacionesActionPerformed
@@ -143,7 +142,7 @@ public class frmMatriz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
         }*/
-        tblMatriz=matriz.getMatriz();
+        matriz.limpiar();
         if(matriz==null){
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
@@ -153,7 +152,7 @@ public class frmMatriz extends javax.swing.JFrame {
                 + "\n2. Sumar matriz"
                 + "\n3. Pintar mayor"
                 + "\n4. Pintar menor"
-                + "\n5. Pintar menor mila" 
+                + "\n5. Pintar menor fila" 
                 + "\n6. Pintar menor columna"
                 + "\n7. Pintar dato con mayor suma de digitos por columna "
                 + "\n8. Pintar datos con suma de digitos 5 o 13"
@@ -172,21 +171,29 @@ public class frmMatriz extends javax.swing.JFrame {
         switch(opcion){
             case "1":
                 matriz.Llenar();
-                tblMatriz=matriz.getMatriz();
+                //tblMatriz=matriz.getMatriz();
                 break;
             case "2":
                 JOptionPane.showMessageDialog(null, "La suma es: "+matriz.sumarDatos());
                 break;
             
             case "3":
-                matrizAux.pintarMayor();
-                tblMatriz=matrizAux.getMatriz();
+                matriz.pintarMayor();
+                break;
+                
+            case "4":
+                matriz.pintarMenor();
+                //tblMatriz=matriz.getMatriz();
+                break;
+            case "5":
+                matriz.pintaMenorFila();
+                break;
+            case "6":
+                matriz.pintaMenorColumna();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Option invalida");
         }
-        
-        tblMatriz=matriz.getMatriz();
         
     }//GEN-LAST:event_btnListaOperacionesActionPerformed
 
