@@ -6,6 +6,8 @@
 package co.edu.udea.logica.forms;
 
 import co.edu.udea.logica.model.Matriz;
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -126,7 +128,7 @@ public class frmMatriz extends javax.swing.JFrame {
             txtN.setText("");
             return;
         }
-        if(n<8 || n>16){
+        if( n>16){
             JOptionPane.showMessageDialog(null, "El dato debe estar entre 8 y 16");
             txtN.setText("");
             return;
@@ -138,15 +140,12 @@ public class frmMatriz extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnListaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaOperacionesActionPerformed
-        /*if("".equals(txtN.getText())){
-            JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
-            return;
-        }*/
-        matriz.limpiar();
+        
         if(matriz==null){
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
         }
+        matriz.limpiar();
         String opcion=JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
                 + "\n1. Llenar matriz"
                 + "\n2. Sumar matriz"
@@ -191,12 +190,37 @@ public class frmMatriz extends javax.swing.JFrame {
             case "6":
                 matriz.pintaMenorColumna();
                 break;
+            case "7":
+                matriz.pintaDatoConMayorSumaDigitosPorColumna();
+                break;
+            case "8":
+                matriz.pintaDatosConSumaDigitos5o13();
+                break;
+            case "9":
+                matriz.ordenaCadaColumnaAscendentemente();
+                break;
+            case "10":
+                matriz.pintaN();
+                break;
+            case "11":
+                JOptionPane.showMessageDialog(null, "El promedio de la diagonal secundaria es: " + matriz.promedioDiagonalSecundaria());
+                break;
+            case "12":
+                matriz.numeroVecesCadaDato();
+                break;
+            case "13":
+                matriz.pintaTriangularSuperiorDerecha();
+                break;
+            case "14":
+                matriz.ordenarAscendentementePorColumnas();
+                break;
             default:
                 JOptionPane.showMessageDialog(null, "Option invalida");
         }
         
     }//GEN-LAST:event_btnListaOperacionesActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
