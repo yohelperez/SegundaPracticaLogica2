@@ -76,9 +76,9 @@ public class Matriz extends JTable{
         //JTextField txt;
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                txt=new JTextField(Integer.toString(numeroAleatorio.nextInt(10)));
+                txt=new JTextField(Integer.toString(numeroAleatorio.nextInt(5)));
                 this.matriz.setValueAt(txt, i, j);              //numeroAleatorio.nextInt(1000);
-                System.out.println(i + "," + j+ ":"+ matriz.getValueAt(i, j));
+                //System.out.println(i + "," + j+ ":"+ matriz.getValueAt(i, j));
             }
         }
         limpiar();
@@ -277,6 +277,7 @@ public class Matriz extends JTable{
         ArrayList<Integer> columna= new ArrayList();
         for(int j=0;j<n; j++){
             int i=0;
+            columna.clear();
             while(i<n){
                 txt=(JTextField)matriz.getValueAt(i, j);
                 datoTxt=Integer.parseInt(txt.getText());
@@ -344,7 +345,7 @@ public class Matriz extends JTable{
                     
             }
         }
-        String conteo="Conteo de apariciones de cada dato: \n";
+        String conteo="Conteo de apariciones de cada dato:\n";
         for(int i=0; i<datos.size(); i++ ){
             conteo+= datos.get(i).toString() + ": " + numeroRepeticiones.get(i).toString() + "\n";
         }
@@ -386,25 +387,179 @@ public class Matriz extends JTable{
             }
             
         }
-        //ArrayList<Integer>sumas=sumasPorColumnas;
         for(int i=0; i<n; i++){
             columnasOrdenadas.add(sumasPorColumnas.get(i));
         }
         Collections.sort(columnasOrdenadas);
         
-        //System.out.println("sumas: " +sumas);
-        System.out.println("sumasporcolumnas: " +sumasPorColumnas);
-        System.out.println("columnasordenadas: "+ columnasOrdenadas);
-        
+        //intercambio de columnas
         for(int j=0; j<n; j++){
             posicionY=sumasPorColumnas.indexOf(columnasOrdenadas.get(j)); //obtiene la posicion en el arraylist de las sumas, correspondiente al arraylist ordenado
-            System.out.println(posicionY);
             for(int i=0; i<n; i++ ){
+                txt=(JTextField)matriz.getValueAt(i, j);
                 txt.setText(Integer.toString(copiaMatriz[i][posicionY]));
-                System.out.println(i + "," + posicionY + ":"+ copiaMatriz[i][posicionY] + "txtfield: " + txt.getText());
                 matriz.setValueAt(txt, i, j);
-                System.out.println("i:"+ i + "j: "+ j);
+            }
+            
+            sumasPorColumnas.set(posicionY, -1);
+        }
+    }
+    
+    //15
+    public void intercambiarColumnas(){
+        int i=recibirDato(0);
+        int j=recibirDato(1);
+        int[] columna1= new int[n];
+        int[] columna2= new int[n];
+        
+        columna1= llenarColumna(columna1, i);
+        columna2= llenarColumna(columna2, j);
+        
+        for(int k=0; k<n; k++){
+            //se pasa a la fila k de la columna i el dato de la misma fila en la columna j
+            txt=(JTextField)matriz.getValueAt(k, i-1);
+            txt.setText(Integer.toString(columna2[k]));
+            matriz.setValueAt(txt, k, i-1);
+            
+            //se pasa a la fila k de la columna j el dato de la misma fila en la columna i
+            txt=(JTextField)matriz.getValueAt(k, j-1);
+            txt.setText(Integer.toString(columna1[k]));
+            matriz.setValueAt(txt, k, j-1);
+        }
+    }
+    
+    private int recibirDato( int num){
+        int i=0;
+        String[] numeracion={"primera", "segunda"};
+        boolean validado=false;
+        boolean ban=false;
+        while(!validado){
+            try{
+                i= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la " + numeracion[num] +" columna a intercambiar: "));
+                ban=true;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "El dato debe ser un entero");
+                ban=false;
+            }
+            
+            if(ban && Integer.class.isInstance(i)){
+                if(i<1 || i>n){
+                    JOptionPane.showMessageDialog(null, "El numero ingresado no corresponde a ninguna columna de la matriz");
+                }
+                else{
+                    validado=true;
+                }
             }
         }
+        return i;
+    }
+    
+    private int[] llenarColumna(int[] columna, int numColumna){
+        for(int i=0; i<n; i++){
+            txt=(JTextField)matriz.getValueAt(i, numColumna-1);
+            datoTxt=Integer.parseInt(txt.getText());
+            columna[i]=datoTxt;
+        }
+        return columna;
+    }
+    
+    //16
+    public void pintarFibonacci(){
+        ArrayList<Integer> fibonacci= new ArrayList();
+        fibonacci.add(0);
+        fibonacci.add(1);
+        int num=1;
+        int posicion=1;
+        
+        //creacion de la lista fibonacci
+        while(num<1000){
+            num=(fibonacci.get(posicion) + fibonacci.get(posicion-1));
+            fibonacci.add(num);
+            posicion++;
+        }
+        
+        System.out.println("Numeros serie fibonacci: ");
+        for(int i=0; i<fibonacci.size(); i++){
+            System.out.print(fibonacci.get(i) + ", ");
+        }
+        //pintar datos en la matriz
+        for(int i=0;i<n; i++){
+            for(int j=0; j<n; j++){
+                
+                txt=(JTextField)matriz.getValueAt(i, j);
+                datoTxt=Integer.parseInt(txt.getText());
+                if(fibonacci.contains(datoTxt)){
+                    txt.setBackground(Color.red);
+                    matriz.setValueAt(txt, i, j);
+                }
+            }
+        }
+    }
+    
+    //17
+    public void pintaComoTableroAjedrez(){
+        for(int i=0; i<n; i++){
+            if(i%2==0){
+                for(int j=1;j<n; j+=2){
+                    txt=(JTextField)matriz.getValueAt(i, j);
+                    txt.setBackground(Color.gray);
+                    matriz.setValueAt(txt, i, j);
+                }
+            }
+            else{
+                for(int j=0; j<n; j+=2){
+                    txt=(JTextField)matriz.getValueAt(i, j);
+                    txt.setBackground(Color.gray);
+                    matriz.setValueAt(txt, i, j);
+                }
+            }
+        }
+    }
+    
+    //18
+    public void ordenaDigitosDescendentemente(){
+        ArrayList<Integer> lista=new ArrayList();
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                txt=(JTextField)matriz.getValueAt(i, j);
+                datoTxt=Integer.parseInt(txt.getText());
+                lista=obtenerDigitos(datoTxt);
+                Collections.sort(lista, Collections.reverseOrder());
+                txt.setText("");
+                for(int k=0; k<lista.size(); k++){
+                    txt.setText(txt.getText()+ lista.get(k).toString());
+                }
+                
+                if(lista.isEmpty()){
+                    txt.setText("0");
+                }
+                matriz.setValueAt(txt, i, j);
+                
+            }
+        }
+        
+    }
+    
+    //19
+    public void sumaDatosCasillasNegras(){
+        int suma=0;
+        this.pintaComoTableroAjedrez();
+        for(int i=0; i<n; i++){
+            if(i%2==0){
+                for(int j=1;j<n; j+=2){
+                    txt=(JTextField)matriz.getValueAt(i, j);
+                    datoTxt=Integer.parseInt(txt.getText());
+                    suma+=datoTxt;
+                }
+            }
+            else{
+                for(int j=0; j<n; j+=2){
+                    txt=(JTextField)matriz.getValueAt(i, j);
+                    datoTxt=Integer.parseInt(txt.getText());
+                    suma+=datoTxt;
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "La suma de los datos de las casillas negras es: " + suma);
     }
 }

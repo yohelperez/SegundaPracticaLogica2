@@ -128,7 +128,7 @@ public class frmMatriz extends javax.swing.JFrame {
             txtN.setText("");
             return;
         }
-        if( n>16){
+        if(n<8 || n>16){
             JOptionPane.showMessageDialog(null, "El dato debe estar entre 8 y 16");
             txtN.setText("");
             return;
@@ -148,11 +148,11 @@ public class frmMatriz extends javax.swing.JFrame {
         matriz.limpiar();
         String opcion=JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
                 + "\n1. Llenar matriz"
-                + "\n2. Sumar matriz"
-                + "\n3. Pintar mayor"
-                + "\n4. Pintar menor"
-                + "\n5. Pintar menor fila" 
-                + "\n6. Pintar menor columna"
+                + "\n2. Sumar todos los datos"
+                + "\n3. Pintar mayor dato"
+                + "\n4. Pintar menor dato"
+                + "\n5. Pintar menor dato de cada fila" 
+                + "\n6. Pintar menor dato de cada columna"
                 + "\n7. Pintar dato con mayor suma de digitos por columna "
                 + "\n8. Pintar datos con suma de digitos 5 o 13"
                 + "\n9. Ordenar cada columna ascendentemente"
@@ -164,7 +164,7 @@ public class frmMatriz extends javax.swing.JFrame {
                 + "\n15. Intercambiar columnas"
                 + "\n16. Pintar datos que pertenezcan a la serie de fibonacci"
                 + "\n17. Pintar como tablero de ajedrez"
-                + "\n18. Ordenar digitos de cada dato ascendentemente"
+                + "\n18. Ordenar digitos de cada dato descendentemente"
                 + "\n19. Sumar datos de casillas negras");
         
         switch(opcion){
@@ -213,6 +213,22 @@ public class frmMatriz extends javax.swing.JFrame {
                 break;
             case "14":
                 matriz.ordenarAscendentementePorColumnas();
+                //tblMatriz=matriz.getMatriz();
+                break;
+            case "15":
+                matriz.intercambiarColumnas();
+                break;
+            case "16":
+                matriz.pintarFibonacci();
+                break;
+            case "17":
+                matriz.pintaComoTableroAjedrez();
+                break;
+            case "18":
+                matriz.ordenaDigitosDescendentemente();
+                break;
+            case "19":
+                matriz.sumaDatosCasillasNegras();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Option invalida");
