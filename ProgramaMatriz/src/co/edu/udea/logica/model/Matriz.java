@@ -12,6 +12,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -32,6 +35,17 @@ public class Matriz extends JTable{
         model.setRowCount(n);       //numero de filas
         model.setColumnCount(n);    //numero de columnas
         matriz.setRowHeight(22);    //cambia la altura de las filas
+        
+        JTableHeader header= matriz.getTableHeader();
+        TableColumnModel colMod = header.getColumnModel();
+        for(int i=0; i<n; i++){
+            TableColumn tabCol = colMod.getColumn(i);
+            tabCol.setHeaderValue(i+1);
+            //header.repaint();
+        }
+        
+        
+        
     }
     
  
@@ -76,7 +90,7 @@ public class Matriz extends JTable{
         //JTextField txt;
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                txt=new JTextField(Integer.toString(numeroAleatorio.nextInt(5)));
+                txt=new JTextField(Integer.toString(numeroAleatorio.nextInt(1000)));
                 this.matriz.setValueAt(txt, i, j);              //numeroAleatorio.nextInt(1000);
                 //System.out.println(i + "," + j+ ":"+ matriz.getValueAt(i, j));
             }
