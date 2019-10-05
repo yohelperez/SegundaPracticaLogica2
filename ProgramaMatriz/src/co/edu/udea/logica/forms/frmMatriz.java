@@ -115,43 +115,43 @@ public class frmMatriz extends javax.swing.JFrame {
     private void txtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNActionPerformed
-    
+
     Matriz matriz;
     Matriz matrizAux;
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         int n;
-        try{
-            n=Integer.parseInt(txtN.getText());
-        }catch(Exception ex){
+        try {
+            n = Integer.parseInt(txtN.getText());
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "El dato ingresado debe ser un entero");
             txtN.setText("");
             return;
         }
-        if(n<8 || n>16){
+        if (n < 8 || n > 16) {
             JOptionPane.showMessageDialog(null, "El dato debe estar entre 8 y 16");
             txtN.setText("");
             return;
         }
-        matriz= new Matriz(n, tblMatriz);
+        matriz = new Matriz(n, tblMatriz);
         matriz.Llenar();
         //matriz.limpiar();
-        tblMatriz=matriz.getMatriz();
+        tblMatriz = matriz.getMatriz();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnListaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaOperacionesActionPerformed
-        
-        if(matriz==null){
+
+        if (matriz == null) {
             JOptionPane.showMessageDialog(null, "Debe generar una matriz primero");
             return;
         }
         matriz.limpiar();
-        String opcion=JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n" 
+        String opcion = JOptionPane.showInputDialog(null, "Ingrese el numero correspondiente a la operacion que quiere realizar\n"
                 + "\n1. Llenar matriz"
                 + "\n2. Sumar todos los datos"
                 + "\n3. Pintar mayor dato"
                 + "\n4. Pintar menor dato"
-                + "\n5. Pintar menor dato de cada fila" 
+                + "\n5. Pintar menor dato de cada fila"
                 + "\n6. Pintar menor dato de cada columna"
                 + "\n7. Pintar dato con mayor suma de digitos por columna "
                 + "\n8. Pintar datos con suma de digitos 5 o 13"
@@ -166,77 +166,76 @@ public class frmMatriz extends javax.swing.JFrame {
                 + "\n17. Pintar como tablero de ajedrez"
                 + "\n18. Ordenar digitos de cada dato descendentemente"
                 + "\n19. Sumar datos de casillas negras");
-        
-        switch(opcion){
-            case "1":
-                matriz.Llenar();
-                //tblMatriz=matriz.getMatriz();
-                break;
-            case "2":
-                JOptionPane.showMessageDialog(null, "La suma es: "+matriz.sumarDatos());
-                break;
-            
-            case "3":
-                matriz.pintarMayor();
-                break;
-                
-            case "4":
-                matriz.pintarMenor();
-                //tblMatriz=matriz.getMatriz();
-                break;
-            case "5":
-                matriz.pintaMenorFila();
-                break;
-            case "6":
-                matriz.pintaMenorColumna();
-                break;
-            case "7":
-                matriz.pintaDatoConMayorSumaDigitosPorColumna();
-                break;
-            case "8":
-                matriz.pintaDatosConSumaDigitos5o13();
-                break;
-            case "9":
-                matriz.ordenaCadaColumnaAscendentemente();
-                break;
-            case "10":
-                matriz.pintaN();
-                break;
-            case "11":
-                JOptionPane.showMessageDialog(null, "El promedio de la diagonal secundaria es: " + matriz.promedioDiagonalSecundaria());
-                break;
-            case "12":
-                matriz.numeroVecesCadaDato();
-                break;
-            case "13":
-                matriz.pintaTriangularSuperiorDerecha();
-                break;
-            case "14":
-                matriz.ordenarAscendentementePorColumnas();
-                //tblMatriz=matriz.getMatriz();
-                break;
-            case "15":
-                matriz.intercambiarColumnas();
-                break;
-            case "16":
-                matriz.pintarFibonacci();
-                break;
-            case "17":
-                matriz.pintaComoTableroAjedrez();
-                break;
-            case "18":
-                matriz.ordenaDigitosDescendentemente();
-                break;
-            case "19":
-                matriz.sumaDatosCasillasNegras();
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Option invalida");
+        if (opcion != null) {
+            switch (opcion) {
+                case "1":
+                    matriz.Llenar();
+                    //tblMatriz=matriz.getMatriz();
+                    break;
+                case "2":
+                    JOptionPane.showMessageDialog(null, "La suma es: " + matriz.sumarDatos());
+                    break;
+
+                case "3":
+                    matriz.pintarMayor();
+                    break;
+
+                case "4":
+                    matriz.pintarMenor();
+                    //tblMatriz=matriz.getMatriz();
+                    break;
+                case "5":
+                    matriz.pintaMenorFila();
+                    break;
+                case "6":
+                    matriz.pintaMenorColumna();
+                    break;
+                case "7":
+                    matriz.pintaDatoConMayorSumaDigitosPorColumna();
+                    break;
+                case "8":
+                    matriz.pintaDatosConSumaDigitos5o13();
+                    break;
+                case "9":
+                    matriz.ordenaCadaColumnaAscendentemente();
+                    break;
+                case "10":
+                    matriz.pintaN();
+                    break;
+                case "11":
+                    JOptionPane.showMessageDialog(null, "El promedio de la diagonal secundaria es: " + matriz.promedioDiagonalSecundaria());
+                    break;
+                case "12":
+                    matriz.numeroVecesCadaDato();
+                    break;
+                case "13":
+                    matriz.pintaTriangularSuperiorDerecha();
+                    break;
+                case "14":
+                    matriz.ordenarAscendentementePorColumnas();
+                    //tblMatriz=matriz.getMatriz();
+                    break;
+                case "15":
+                    matriz.intercambiarColumnas();
+                    break;
+                case "16":
+                    matriz.pintarFibonacci();
+                    break;
+                case "17":
+                    matriz.pintaComoTableroAjedrez();
+                    break;
+                case "18":
+                    matriz.ordenaDigitosDescendentemente();
+                    break;
+                case "19":
+                    matriz.sumaDatosCasillasNegras();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Option invalida");
+            }
         }
-        
     }//GEN-LAST:event_btnListaOperacionesActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -271,7 +270,7 @@ public class frmMatriz extends javax.swing.JFrame {
             }
         });
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
